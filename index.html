@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="du">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- ----------main style------------ -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="style.css">
+        <!-- ------------Google Fonts-------------- -->
+        <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet">
+        <!-- --------------Icon pack font-awesome----------- -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!-- --------------------Google Maps Api---------------- -->
+        <script defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCl7F3URup7S4Of3R3cJQLk535vNnUQRzg&callback=initMap">
+        </script>
+        <title>EMA'S ROYALTY| World's Best Event Planners</title>
+    </head>
+
+    <body>
+        <div class="header">
+            <div class="container">
+                <div class="navbar">
+                    <div class="logo">
+                        <img src="images/LOGO.png" style="height:100px;" alt="logo-image">
+                    </div>
+                    <nav>
+                        <ul id="menu-items">
+                            <li><a href="">Home</a></li>
+                            <li><a href="products.html">Products</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="register.html">Account</a></li>
+                        </ul>
+                    </nav>
+                    <img src="images/cart.png" alt="cart" width="30px" height="30px" class="cart-img">
+                    <img src="images/menu.png" alt="menu" width="30px" height="30px" class="menu-icon" onclick="menutoggle()">
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <h1 class="text-gold">EMA's ROYALTY (EVENTS)</h1>
+                        <p>Enjoy the best event planning offers with us.</p>
+                        <p>Shop stress-free from the comfort of your home, and let us do all the work for you.</p>
+                        <a href="" class="btn btn-main">Explore Now &#8594;</a>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="images/Banner.png" alt="banner-image" style="height:250px;" class="center">
+                    </div>
+                </div>
+        </div>
+        <!-- featured products -->
+        <div class="small-container mt-5">
+            <h2 class="title">Featured Products</h2>
+            <div class="row horizontal-scroll-wrapper squares">
+                <div class="col-4 box-container">
+                    <div class="images/party hall (1).png"></div>
+                    <img src="images/party hall (1).png" alt="tablet pc">
+                    <h5 class="product_name">Party Hall</h5>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                    <div class="content-details fadeIn-bottom">
+                        <h3 class="content-title">Party Hall</h3>
+                        <div class="content-btn btn btn-secondary" title="Add to Cart"><i class="fa fa-cart-plus" aria-hidden="true"></i></div>
+                    </div>
+                    <!-- <div class="btn btn-secondary" title="Preview Item"><i class="fa fa-cart-plus" aria-hidden="true"></i>
+                    </div> -->
+                </div>
+                <div class="col-4 box-container">
+                    <img src="images/party hall (2).jpg" alt="Party Hall">
+                    <h5 class="product_name">Wedding Hall</h5>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                </div>
+                <div class="col-4 box-container">
+                    <img src="images/party hall (3).jpg" alt="Birthday Party">
+                    <h5 class="product_name">Birthday Decor</h5>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                </div>
+                <div class="col-4 box-container">
+                    <img src="images/party hall (4).jpg" alt="Baby Shower">
+                    <h5 class="product_name">Gender Reveal Decor</h5>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- Latest products -->
+            <h2 class="title">Latest Products</h2>
+            <div class="row">
+                <div class="col-4 box-container">
+                    <img src="images/party hall (5).png" alt="Wedding Hall">
+                    <h5 class="product_name">Wedding Hall</h5>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                </div>
+                <div class="col-4 box-container">
+                    <img src="images/party hall (6).jpg" alt="Anniversary">
+                    <h5 class="product_name">Surprise Anniversary Decor</h5>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-half-o"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                </div>
+                <div class="col-4 box-container">
+                    <img src="images/party hall (7).jpg" alt="Birthday">
+                    <h5 class="product_name">Car Birthday Surprise</h5>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                </div>
+                <div class="col-4 box-container">
+                    <img src="images/party hall (8).png" alt="Birthday Party">
+                    <h5 class="product_name">Surprise Party Decor</h5>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-half-o"></i>
+                    </div>
+                </div>
+                <div class="col-4 box-container">
+                    <img src="images/party hall (9).jpg" alt="Birthday">
+                    <h5 class="product_name">Bedroom Surprise</h5>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                </div>
+                <div class="col-4 box-container">
+                    <img src="images/party hall (10).jpeg" alt="Birthday Party">
+                    <h5 class="product_name">Birthday Party Hall</h5>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                </div>
+                <div class="col-4 box-container">
+                    <img src="images/party hall (11).jpg" alt="Home Party">
+                    <h5 class="product_name">Home Party Decor</h5>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                </div>
+                <div class="col-4 box-container">
+                    <img src="images/party hall (12).png" alt="Backdrop">
+                    <h5 class="product_name">Backdrop Decor</h5>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                </div>
+                <div class="col-4 box-container">
+                    <img src="images/party hall (13).png" alt="Baby Shower">
+                    <h5 class="product_name">Outdoor Gender Reveal</h5>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-half-o"></i>
+                    </div>
+                </div>
+                <div class="col-4 box-container">
+                    <img src="images/party hall (14).png" alt="Marraige Proposal">
+                    <h5 class="product_name">Surprise Marraige Proposal</h5>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-half-o"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                </div>
+                <div class="col-4 box-container">
+                    <img src="images/party hall (15).png" alt="Indoor Proposal">
+                    <h5 class="product_name">Indoor Marraige Proposal</h5>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                </div>
+                <div class="col-4 box-container">
+                    <img src="images/party hall (16).png" alt="Valentine's Day Surprise">
+                    <h5 class="product_name">Valentine's day Decor</h5>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                </div>
+                <div class="col-4 box-container">
+                    <img src="images/party hall (17).png" alt="Valentine's day Surprise">
+                    <h5 class="product_name">Valentine's day Decor</h5>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                </div>
+                <div class="col-4 box-container">
+                    <img src="images/party hall (18).png" alt="Bedroom Proposal">
+                    <h5 class="product_name">Bedroom Proposal Decorations</h5>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-half-o"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                </div>
+                <div class="col-4 box-container">
+                    <img src="images/party hall (19).png" alt="Outdoor Marraige Proposal">
+                    <h5 class="product_name">Simple Outdoor Decor</h5>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                </div>
+                <div class="col-4 box-container">
+                    <img src="images/party hall (20).jpg" alt="Kids Personalized Birthday">
+                    <h5 class="product_name">Kids Birthday Party</h5>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- offer -->
+        <div class="offer">
+            <div class="small-container">
+                <div class="row">
+                    <div class="col-6">
+                        <img src="images/LOGO 2.png" class="offer-img">
+                    </div>
+                    <div class="col-6 text-data text-white">
+                        <p>Top designs you should take</p>
+                        <h1>Best proposals, limitd offer!</h1>
+                        
+                        <a href="" class="btn">Book Now!</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="locate">
+            <div class="small-container">
+                <div class="row">
+                    <div class="col-2">
+                        <h3>My Google Maps Demo</h3>
+                        <div id="map"></div>
+                    </div>
+                    <div class="col-2">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- brands -->
+        <div class="brands">
+            <div class="small-container">
+                <div class="row">
+                    <div class="col-3">
+                        <img src="images/amazon_PNG24.png" alt="amazon logo">
+                    </div>
+                    <div class="col-3">
+                </div>
+            </div>
+        </div>
+
+        <!-- -------footer------ -->
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col-1">
+                        <h3>Follow our Social Media Platforms</h3>
+                        <p>Joy-filled Events that Reflect Your Story</p>
+                        <div class="app-logo">
+                            <img src="images/playstore.png" alt="">
+                            <img src="images/appstore.png" alt="">
+                        </div>
+                    </div>
+                    <div class="footer-col-2">
+                        <img src="images" alt="">
+                        <p>Best Event's planning Team</p>
+                    </div>
+                    <div class="footer-col-3">
+                        <h3>Useful Links</h3>
+                        <ul>
+                            <li>Blog Post</li>
+                            <li>Join Affiliate</li>
+                        </ul>
+                    </div>
+                    <div class="footer-col-4">
+                        <h3>Follow Us</h3>
+                        <ul>
+                            <li>Facebook</li>
+                            <li>TikTok</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr>
+                <p class="copyright">Copyright 2021 Sarthak</p>
+            </div>
+        </div>
+        <script src="main.js"></script>
+            <!--Load the API from the specified URL
+            * The async attribute allows the browser to render the page while the API loads
+            * The key parameter will contain your own API key (which is not needed for this tutorial)
+            * The callback parameter executes the initMap() function
+            -->
+    </body>
+
+</html>

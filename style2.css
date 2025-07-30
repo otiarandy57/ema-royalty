@@ -1,0 +1,137 @@
+/* Animated Background */
+body {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab, #667eea, #764ba2, #f093fb, #f5576c);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Animated gradient background */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Floating particles animation */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.3) 0%, transparent 50%);
+    animation: floatingParticles 20s ease-in-out infinite;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes floatingParticles {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-20px) rotate(180deg);
+        opacity: 0.8;
+    }
+}
+
+/* Pulsing overlay effect */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    animation: pulse 8s ease-in-out infinite;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.1;
+        transform: scale(1.1);
+    }
+}
+
+/* Alert info */
+.alert {
+    margin-bottom: 0px;
+   }
+.alert-info {
+    color: #ffffff;
+    background-color: rgba(151, 124, 183, 0.9);
+    border-color: #bee5eb;
+    backdrop-filter: blur(10px);
+}
+
+.alert p{
+    text-align: center; 
+}
+
+/* Nav bar */
+.navbar img{
+    height: 50px;
+}
+.removed button {
+    background: #977CB7;
+    color: #ffffff;
+}
+.removed button:hover {
+background-color: #a668f1;
+    color: #ffffff;
+}
+
+/* Carousel Images */
+.carousel-control-prev-icon{
+    background-color: #977CB7;
+    border-radius: 12px;
+
+}
+.carousel-control-next-icon{
+    background-color: #977CB7;
+    border-radius: 12px;
+}
+
+/* SELECT QUANTITY DROPDOWN & ADD TO CART BUTTON HERE  */
+.custom-select{
+    width: auto;
+}
+
+
+.add-to-cart button{
+    background-color: #977CB7;
+    border: #977CB7;
+}
+.add-to-cart button:hover{
+    background-color: #a668f1;
+    color: #ffffff;
+
+}
+
+/* Similar Items  */
+
+
+.my-footer{
+background: #977CB7;
+}

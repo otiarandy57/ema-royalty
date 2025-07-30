@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - EMA's Royalty Events</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style2.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .product-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .product-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .product-card:hover img {
+            transform: scale(1.05);
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .product-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .product-description {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .btn-custom {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            color: white;
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8)), url('images/Banner.png');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0;
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+        }
+        
+        .hero-section h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .hero-section p {
+            font-size: 20px;
+            opacity: 0.9;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+        }
+        
+        .navbar-custom {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: #333 !important;
+        }
+        
+        .nav-link {
+            color: #333 !important;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: #667eea !important;
+        }
+
+        .rating {
+            color: #ffc107;
+            margin-bottom: 10px;
+        }
+
+        /* Quick booking modal styles */
+        .quick-booking-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 10000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 90%;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -60%);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: #333;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            margin-right: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+
+        /* Cart animations */
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .cart-item {
+            animation: fadeInUp 0.3s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .payment-method.selected {
+            border-color: #667eea !important;
+            background: #f8f9ff !important;
+            transform: scale(1.05);
+        }
+
+        .btn-custom:active {
+            transform: scale(0.95);
+        }
+
+        #cart-count {
+            animation: bounce 0.6s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light navbar-custom fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/LOGO.png" alt="EMA's Royalty" height="40" class="mr-2">
+                EMA's Royalty
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="products.html">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="openCart()" style="position: relative;">
+                            <i class="fa fa-shopping-cart"></i> Cart
+                            <span id="cart-count" class="badge badge-danger" style="position: absolute; top: -5px; right: -10px; background: #dc3545; color: white; border-radius: 50%; padding: 2px 6px; font-size: 10px; display: none;">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1>Our Event Packages</h1>
+            <p>Discover our comprehensive range of event decoration services</p>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <div class="container">
+        <h2 class="section-title">Featured Event Packages</h2>
+        
+        <div class="row">
+            <!-- Wedding Events -->
+            <div class="col-lg-4 col-md-6">
+                <div class="product-card">
+                    <img src="images/party hall (1).png" alt="Wedding Decoration">
+                    <div class="product-info">
+                        <h3 class="product-title">Elegant Wedding Package</h3>
+                        <div class="rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <p class="product-price">Starting from 300,000 FCFA</p>
+                        <p class="product-description">Complete wedding decoration with floral arrangements, lighting, and elegant table settings.</p>
+                        <button class="btn btn-custom" onclick="addToCart('elegant-wedding', 'Elegant Wedding Package', 300000, 'images/party hall (1).png')">Add to Cart</button>
+                        <a href="contact.html?service=wedding&package=elegant" class="btn btn-secondary" style="margin-left: 10px;">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Birthday Parties -->
+            <div class="col-lg-4 col-md-6">
+                <div class="product-card">
+                    <img src="images/party hall (3).jpg" alt="Birthday Party">
+                    <div class="product-info">
+                        <h3 class="product-title">Birthday Celebration Package</h3>
+                        <div class="rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-o"></i>
+                        </div>
+                        <p class="product-price">Starting from 120,000 FCFA</p>
+                        <p class="product-description">Fun and colorful birthday decorations with balloons, banners, and themed elements.</p>
+                        <button class="btn btn-custom" onclick="addToCart('birthday-celebration', 'Birthday Celebration Package', 120000, 'images/party hall (3).jpg')">Add to Cart</button>
+                        <a href="contact.html?service=birthday&package=celebration" class="btn btn-secondary" style="margin-left: 10px;">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Anniversary -->
+            <div class="col-lg-4 col-md-6">
+                <div class="product-card">
+                    <img src="images/party hall (6).jpg" alt="Anniversary">
+                    <div class="product-info">
+                        <h3 class="product-title">Romantic Anniversary Setup</h3>
+                        <div class="rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-o"></i>
+                        </div>
+                        <p class="product-price">Starting from 180,000 FCFA</p>
+                        <p class="product-description">Intimate and romantic decorations perfect for celebrating your love story.</p>
+                        <button class="btn btn-custom" onclick="addToCart('anniversary-romantic', 'Romantic Anniversary Setup', 180000, 'images/party hall (6).jpg')">Add to Cart</button>
+                        <a href="contact.html?service=anniversary&package=romantic" class="btn btn-secondary" style="margin-left: 10px;">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gender Reveal -->
+            <div class="col-lg-4 col-md-6">
+                <div class="product-card">
+                    <img src="images/party hall (4).jpg" alt="Gender Reveal">
+                    <div class="product-info">
+                        <h3 class="product-title">Gender Reveal Party</h3>
+                        <div class="rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <p class="product-price">Starting from 150,000 FCFA</p>
+                        <p class="product-description">Exciting gender reveal setups with balloons, confetti, and surprise elements.</p>
+                        <button class="btn btn-custom" onclick="addToCart('gender-reveal', 'Gender Reveal Party', 150000, 'images/party hall (4).jpg')">Add to Cart</button>
+                        <a href="contact.html?service=gender-reveal&package=party" class="btn btn-secondary" style="margin-left: 10px;">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Corporate Events -->
+            <div class="col-lg-4 col-md-6">
+                <div class="product-card">
+                    <img src="images/party hall (5).png" alt="Corporate Event">
+                    <div class="product-info">
+                        <h3 class="product-title">Corporate Event Package</h3>
+                        <div class="rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-o"></i>
+                        </div>
+                        <p class="product-price">Starting from 240,000 FCFA</p>
+                        <p class="product-description">Professional corporate event decorations for conferences, launches, and meetings.</p>
+                        <button class="btn btn-custom" onclick="addToCart('corporate-event', 'Corporate Event Package', 240000, 'images/party hall (5).png')">Add to Cart</button>
+                        <a href="contact.html?service=corporate&package=professional" class="btn btn-secondary" style="margin-left: 10px;">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Proposal Setup -->
+            <div class="col-lg-4 col-md-6">
+                <div class="product-card">
+                    <img src="images/party hall (14).png" alt="Marriage Proposal">
+                    <div class="product-info">
+                        <h3 class="product-title">Marriage Proposal Setup</h3>
+                        <div class="rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <p class="product-price">Starting from 210,000 FCFA</p>
+                        <p class="product-description">Magical proposal setups to make your special moment unforgettable.</p>
+                        <button class="btn btn-custom" onclick="addToCart('marriage-proposal', 'Marriage Proposal Setup', 210000, 'images/party hall (14).png')">Add to Cart</button>
+                        <a href="contact.html?service=proposal&package=marriage" class="btn btn-secondary" style="margin-left: 10px;">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- More Event Types -->
+        <h2 class="section-title mt-5">Specialized Event Services</h2>
+
+        <div class="row">
+            <!-- Baby Shower -->
+            <div class="col-lg-4 col-md-6">
+                <div class="product-card">
+                    <img src="images/party hall (13).png" alt="Baby Shower">
+                    <div class="product-info">
+                        <h3 class="product-title">Baby Shower Celebration</h3>
+                        <div class="rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-o"></i>
+                        </div>
+                        <p class="product-price">Starting from 168,000 FCFA</p>
+                        <p class="product-description">Sweet and adorable baby shower decorations with pastel themes and cute elements.</p>
+                        <button class="btn btn-custom" onclick="addToCart('baby-shower', 'Baby Shower Celebration', 168000, 'images/party hall (13).png')">Add to Cart</button>
+                        <a href="contact.html?service=baby-shower&package=celebration" class="btn btn-secondary" style="margin-left: 10px;">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Graduation Party -->
+            <div class="col-lg-4 col-md-6">
+                <div class="product-card">
+                    <img src="images/party hall (7).jpg" alt="Graduation Party">
+                    <div class="product-info">
+                        <h3 class="product-title">Graduation Celebration</h3>
+                        <div class="rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-o"></i>
+                        </div>
+                        <p class="product-price">Starting from 132,000 FCFA</p>
+                        <p class="product-description">Celebrate academic achievements with elegant graduation party decorations.</p>
+                        <button class="btn btn-custom" onclick="addToCart('graduation', 'Graduation Celebration', 132000, 'images/party hall (7).jpg')">Add to Cart</button>
+                        <a href="contact.html?service=graduation&package=celebration" class="btn btn-secondary" style="margin-left: 10px;">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Valentine's Day -->
+            <div class="col-lg-4 col-md-6">
+                <div class="product-card">
+                    <img src="images/party hall (16).png" alt="Valentine's Day">
+                    <div class="product-info">
+                        <h3 class="product-title">Valentine's Day Special</h3>
+                        <div class="rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <p class="product-price">Starting from 108,000 FCFA</p>
+                        <p class="product-description">Romantic Valentine's Day decorations with hearts, roses, and love-themed elements.</p>
+                        <button class="btn btn-custom" onclick="addToCart('valentines', 'Valentine\'s Day Special', 108000, 'images/party hall (16).png')">Add to Cart</button>
+                        <a href="contact.html?service=valentines&package=special" class="btn btn-secondary" style="margin-left: 10px;">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Outdoor Events -->
+            <div class="col-lg-4 col-md-6">
+                <div class="product-card">
+                    <img src="images/party hall (19).png" alt="Outdoor Event">
+                    <div class="product-info">
+                        <h3 class="product-title">Outdoor Event Package</h3>
+                        <div class="rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-o"></i>
+                        </div>
+                        <p class="product-price">Starting from 192,000 FCFA</p>
+                        <p class="product-description">Beautiful outdoor event setups perfect for garden parties and open-air celebrations.</p>
+                        <button class="btn btn-custom" onclick="addToCart('outdoor-event', 'Outdoor Event Package', 192000, 'images/party hall (19).png')">Add to Cart</button>
+                        <a href="contact.html?service=outdoor&package=event" class="btn btn-secondary" style="margin-left: 10px;">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kids Birthday -->
+            <div class="col-lg-4 col-md-6">
+                <div class="product-card">
+                    <img src="images/party hall (20).jpg" alt="Kids Birthday">
+                    <div class="product-info">
+                        <h3 class="product-title">Kids Birthday Extravaganza</h3>
+                        <div class="rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <p class="product-price">Starting from 150,000 FCFA</p>
+                        <p class="product-description">Fun-filled kids birthday parties with cartoon themes, games, and colorful decorations.</p>
+                        <button class="btn btn-custom" onclick="addToCart('kids-birthday', 'Kids Birthday Extravaganza', 150000, 'images/party hall (20).jpg')">Add to Cart</button>
+                        <a href="contact.html?service=kids-birthday&package=extravaganza" class="btn btn-secondary" style="margin-left: 10px;">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Backdrop Rental -->
+            <div class="col-lg-4 col-md-6">
+                <div class="product-card">
+                    <img src="images/party hall (12).png" alt="Backdrop">
+                    <div class="product-info">
+                        <h3 class="product-title">Custom Backdrop Service</h3>
+                        <div class="rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-o"></i>
+                        </div>
+                        <p class="product-price">Starting from 90,000 FCFA</p>
+                        <p class="product-description">Professional backdrop designs for photo sessions and event photography.</p>
+                        <button class="btn btn-custom" onclick="addToCart('backdrop', 'Custom Backdrop Service', 90000, 'images/party hall (12).png')">Add to Cart</button>
+                        <a href="contact.html?service=backdrop&package=custom" class="btn btn-secondary" style="margin-left: 10px;">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Premium Services -->
+        <h2 class="section-title mt-5">Premium & Luxury Services</h2>
+
+        <div class="row">
+            <!-- Luxury Wedding -->
+            <div class="col-lg-4 col-md-6">
+                <div class="product-card">
+                    <img src="images/party hall (2).jpg" alt="Luxury Wedding">
+                    <div class="product-info">
+                        <h3 class="product-title">Luxury Wedding Package</h3>
+                        <div class="rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <p class="product-price">Starting from 720,000 FCFA</p>
+                        <p class="product-description">Ultra-luxury wedding decorations with premium flowers, crystal elements, and exclusive designs.</p>
+                        <button class="btn btn-custom" onclick="addToCart('luxury-wedding', 'Luxury Wedding Package', 720000, 'images/party hall (2).jpg')">Add to Cart</button>
+                        <a href="contact.html?service=luxury-wedding&package=premium" class="btn btn-secondary" style="margin-left: 10px;">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Surprise Party -->
+            <div class="col-lg-4 col-md-6">
+                <div class="product-card">
+                    <img src="images/party hall (8).png" alt="Surprise Party">
+                    <div class="product-info">
+                        <h3 class="product-title">Surprise Party Setup</h3>
+                        <div class="rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-o"></i>
+                        </div>
+                        <p class="product-price">Starting from 180,000 FCFA</p>
+                        <p class="product-description">Secret surprise party planning with quick setup and stunning reveal moments.</p>
+                        <button class="btn btn-custom" onclick="addToCart('surprise-party', 'Surprise Party Setup', 180000, 'images/party hall (8).png')">Add to Cart</button>
+                        <a href="contact.html?service=surprise&package=party" class="btn btn-secondary" style="margin-left: 10px;">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Home Decoration -->
+            <div class="col-lg-4 col-md-6">
+                <div class="product-card">
+                    <img src="images/party hall (11).jpg" alt="Home Party">
+                    <div class="product-info">
+                        <h3 class="product-title">Home Party Decoration</h3>
+                        <div class="rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-o"></i>
+                        </div>
+                        <p class="product-price">Starting from 108,000 FCFA</p>
+                        <p class="product-description">Transform your home into a party venue with our cozy and elegant home decorations.</p>
+                        <button class="btn btn-custom" onclick="addToCart('home-party', 'Home Party Decoration', 108000, 'images/party hall (11).jpg')">Add to Cart</button>
+                        <a href="contact.html?service=home-party&package=decoration" class="btn btn-secondary" style="margin-left: 10px;">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="text-center mt-5 mb-5">
+            <h3 style="color: #333; margin-bottom: 20px;">Can't Find What You're Looking For?</h3>
+            <p style="color: #666; font-size: 18px; margin-bottom: 30px;">We create custom event packages tailored to your specific needs and vision.</p>
+            <a href="contact.html" class="btn btn-custom btn-lg">Contact Us for Custom Package</a>
+            <br><br>
+            <button onclick="openQuickBooking()" class="btn btn-secondary btn-lg">Quick Inquiry</button>
+        </div>
+    </div>
+
+    <!-- Quick Booking Modal -->
+    <div id="quickBookingModal" class="quick-booking-modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeQuickBooking()">&times;</span>
+            <h3 style="color: #333; margin-bottom: 20px; text-align: center;">Quick Inquiry</h3>
+            <p style="color: #666; text-align: center; margin-bottom: 25px;">Get a quick quote for your event!</p>
+
+            <form id="quickBookingForm">
+                <div style="margin-bottom: 15px;">
+                    <input type="text" id="quickName" placeholder="Your Name *" required style="width: 100%; padding: 12px; border: 2px solid #e1e1e1; border-radius: 8px; font-size: 14px;">
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <input type="email" id="quickEmail" placeholder="Your Email *" required style="width: 100%; padding: 12px; border: 2px solid #e1e1e1; border-radius: 8px; font-size: 14px;">
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <input type="tel" id="quickPhone" placeholder="Phone Number" style="width: 100%; padding: 12px; border: 2px solid #e1e1e1; border-radius: 8px; font-size: 14px;">
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <select id="quickEventType" style="width: 100%; padding: 12px; border: 2px solid #e1e1e1; border-radius: 8px; font-size: 14px;">
+                        <option value="">Select Event Type</option>
+                        <option value="wedding">Wedding</option>
+                        <option value="birthday">Birthday Party</option>
+                        <option value="anniversary">Anniversary</option>
+                        <option value="corporate">Corporate Event</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <textarea id="quickMessage" placeholder="Brief description of your event..." rows="3" style="width: 100%; padding: 12px; border: 2px solid #e1e1e1; border-radius: 8px; font-size: 14px; resize: vertical;"></textarea>
+                </div>
+                <div style="text-align: center;">
+                    <button type="button" onclick="closeQuickBooking()" class="btn-secondary">Cancel</button>
+                    <button type="submit" class="btn btn-custom">Send Quick Inquiry</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Shopping Cart Modal -->
+    <div id="cartModal" class="quick-booking-modal">
+        <div class="modal-content" style="max-width: 700px;">
+            <span class="modal-close" onclick="closeCart()">&times;</span>
+            <h3 style="color: #333; margin-bottom: 20px; text-align: center;">
+                <i class="fa fa-shopping-cart"></i> Your Event Cart
+            </h3>
+
+            <div id="cart-items">
+                <!-- Cart items will be populated here -->
+            </div>
+
+            <div id="cart-summary" style="border-top: 2px solid #eee; padding-top: 20px; margin-top: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h4 style="color: #333; margin: 0;">Total: <span id="cart-total">0</span> FCFA</h4>
+                    <button onclick="clearCart()" class="btn btn-secondary">Clear Cart</button>
+                </div>
+
+                <div id="cart-actions" style="text-align: center;">
+                    <button onclick="proceedToCheckout()" class="btn btn-custom btn-lg" style="margin-right: 10px;">
+                        <i class="fa fa-credit-card"></i> Proceed to Payment
+                    </button>
+                    <button onclick="saveForLater()" class="btn btn-secondary">Save for Later</button>
+                </div>
+            </div>
+
+            <div id="empty-cart" style="text-align: center; padding: 40px; display: none;">
+                <i class="fa fa-shopping-cart" style="font-size: 48px; color: #ccc; margin-bottom: 20px;"></i>
+                <h4 style="color: #666;">Your cart is empty</h4>
+                <p style="color: #999;">Add some amazing events to get started!</p>
+                <button onclick="closeCart()" class="btn btn-custom">Continue Shopping</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div id="checkoutModal" class="quick-booking-modal">
+        <div class="modal-content" style="max-width: 800px;">
+            <span class="modal-close" onclick="closeCheckout()">&times;</span>
+            <h3 style="color: #333; margin-bottom: 30px; text-align: center;">
+                <i class="fa fa-credit-card"></i> Checkout & Payment
+            </h3>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                <!-- Order Summary -->
+                <div>
+                    <h4 style="color: #333; margin-bottom: 20px; border-bottom: 2px solid #eee; padding-bottom: 10px;">Order Summary</h4>
+                    <div id="checkout-items">
+                        <!-- Checkout items will be populated here -->
+                    </div>
+                    <div style="border-top: 2px solid #eee; padding-top: 15px; margin-top: 15px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <span>Subtotal:</span>
+                            <span><span id="checkout-subtotal">0</span> FCFA</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <span>Service Fee:</span>
+                            <span><span id="service-fee">15000</span> FCFA</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 18px; color: #333;">
+                            <span>Total:</span>
+                            <span><span id="checkout-total">0</span> FCFA</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Form -->
+                <div>
+                    <h4 style="color: #333; margin-bottom: 20px; border-bottom: 2px solid #eee; padding-bottom: 10px;">Payment Details</h4>
+                    <form id="paymentForm">
+                        <div style="margin-bottom: 15px;">
+                            <label style="display: block; margin-bottom: 5px; font-weight: 500;">Full Name *</label>
+                            <input type="text" id="billing-name" required style="width: 100%; padding: 12px; border: 2px solid #e1e1e1; border-radius: 8px;">
+                        </div>
+
+                        <div style="margin-bottom: 15px;">
+                            <label style="display: block; margin-bottom: 5px; font-weight: 500;">Email Address *</label>
+                            <input type="email" id="billing-email" required style="width: 100%; padding: 12px; border: 2px solid #e1e1e1; border-radius: 8px;">
+                        </div>
+
+                        <div style="margin-bottom: 15px;">
+                            <label style="display: block; margin-bottom: 5px; font-weight: 500;">Phone Number *</label>
+                            <input type="tel" id="billing-phone" required style="width: 100%; padding: 12px; border: 2px solid #e1e1e1; border-radius: 8px;">
+                        </div>
+
+                        <div style="margin-bottom: 15px;">
+                            <label style="display: block; margin-bottom: 5px; font-weight: 500;">Event Date *</label>
+                            <input type="date" id="event-date" required style="width: 100%; padding: 12px; border: 2px solid #e1e1e1; border-radius: 8px;">
+                        </div>
+
+                        <div style="margin-bottom: 20px;">
+                            <label style="display: block; margin-bottom: 5px; font-weight: 500;">Payment Method</label>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                                <button type="button" onclick="selectPaymentMethod('paypal')" class="payment-method" data-method="paypal" style="padding: 15px; border: 2px solid #e1e1e1; border-radius: 8px; background: white; cursor: pointer; transition: all 0.3s ease;">
+                                    <i class="fa fa-paypal" style="color: #0070ba; font-size: 20px;"></i><br>
+                                    <small>PayPal</small>
+                                </button>
+                                <button type="button" onclick="selectPaymentMethod('stripe')" class="payment-method" data-method="stripe" style="padding: 15px; border: 2px solid #e1e1e1; border-radius: 8px; background: white; cursor: pointer; transition: all 0.3s ease;">
+                                    <i class="fa fa-credit-card" style="color: #635bff; font-size: 20px;"></i><br>
+                                    <small>Credit Card</small>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div style="text-align: center;">
+                            <button type="button" onclick="closeCheckout()" class="btn-secondary" style="margin-right: 10px;">Cancel</button>
+                            <button type="submit" class="btn btn-custom btn-lg">
+                                <i class="fa fa-lock"></i> Complete Payment
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Shopping Cart System
+        let cart = JSON.parse(localStorage.getItem('eventCart')) || [];
+        let selectedPaymentMethod = null;
+
+        // Function to store service information in localStorage
+        function setServiceInfo(serviceName, price) {
+            localStorage.setItem('selectedService', serviceName);
+            localStorage.setItem('selectedPrice', price);
+            localStorage.setItem('bookingTimestamp', new Date().toISOString());
+        }
+
+        // Add item to cart
+        function addToCart(id, name, price, image) {
+            const existingItem = cart.find(item => item.id === id);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: id,
+                    name: name,
+                    price: price,
+                    image: image,
+                    quantity: 1,
+                    addedAt: new Date().toISOString()
+                });
+            }
+
+            updateCart();
+            showAddToCartNotification(name);
+        }
+
+        // Update cart in localStorage and UI
+        function updateCart() {
+            localStorage.setItem('eventCart', JSON.stringify(cart));
+            updateCartCount();
+            updateCartDisplay();
+        }
+
+        // Update cart count in navigation
+        function updateCartCount() {
+            const cartCount = document.getElementById('cart-count');
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+            if (totalItems > 0) {
+                cartCount.textContent = totalItems;
+                cartCount.style.display = 'inline-block';
+            } else {
+                cartCount.style.display = 'none';
+            }
+        }
+
+        // Show add to cart notification
+        function showAddToCartNotification(itemName) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+                color: white;
+                padding: 15px 20px;
+                border-radius: 10px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                z-index: 10000;
+                font-weight: 500;
+                animation: slideIn 0.3s ease;
+                max-width: 300px;
+            `;
+            notification.innerHTML = `
+                <i class="fa fa-check-circle"></i>
+                <strong>${itemName}</strong> added to cart!
+                <br><small>Click cart to view all items</small>
+            `;
+
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // Open cart modal
+        function openCart() {
+            updateCartDisplay();
+            document.getElementById('cartModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close cart modal
+        function closeCart() {
+            document.getElementById('cartModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Update cart display
+        function updateCartDisplay() {
+            const cartItems = document.getElementById('cart-items');
+            const emptyCart = document.getElementById('empty-cart');
+            const cartSummary = document.getElementById('cart-summary');
+
+            if (cart.length === 0) {
+                cartItems.style.display = 'none';
+                cartSummary.style.display = 'none';
+                emptyCart.style.display = 'block';
+                return;
+            }
+
+            cartItems.style.display = 'block';
+            cartSummary.style.display = 'block';
+            emptyCart.style.display = 'none';
+
+            cartItems.innerHTML = cart.map(item => `
+                <div class="cart-item" style="display: flex; align-items: center; padding: 15px; border: 1px solid #eee; border-radius: 10px; margin-bottom: 15px;">
+                    <img src="${item.image}" alt="${item.name}" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px; margin-right: 15px;">
+                    <div style="flex: 1;">
+                        <h5 style="margin: 0 0 5px 0; color: #333;">${item.name}</h5>
+                        <p style="margin: 0; color: #666; font-size: 14px;">${item.price.toLocaleString()} FCFA per event</p>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <button onclick="updateQuantity('${item.id}', ${item.quantity - 1})" style="background: #dc3545; color: white; border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer;">-</button>
+                        <span style="font-weight: bold; min-width: 20px; text-align: center;">${item.quantity}</span>
+                        <button onclick="updateQuantity('${item.id}', ${item.quantity + 1})" style="background: #28a745; color: white; border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer;">+</button>
+                        <button onclick="removeFromCart('${item.id}')" style="background: #dc3545; color: white; border: none; border-radius: 5px; padding: 5px 10px; margin-left: 10px; cursor: pointer;">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            document.getElementById('cart-total').textContent = total.toLocaleString();
+        }
+
+        // Update item quantity
+        function updateQuantity(id, newQuantity) {
+            if (newQuantity <= 0) {
+                removeFromCart(id);
+                return;
+            }
+
+            const item = cart.find(item => item.id === id);
+            if (item) {
+                item.quantity = newQuantity;
+                updateCart();
+            }
+        }
+
+        // Remove item from cart
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCart();
+        }
+
+        // Clear entire cart
+        function clearCart() {
+            if (confirm('Are you sure you want to clear your cart?')) {
+                cart = [];
+                updateCart();
+            }
+        }
+
+        // Save cart for later
+        function saveForLater() {
+            const cartData = {
+                items: cart,
+                savedAt: new Date().toISOString(),
+                expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString() // 7 days
+            };
+
+            localStorage.setItem('savedCart', JSON.stringify(cartData));
+
+            alert('Cart saved! Your items will be available for 7 days.');
+            closeCart();
+        }
+
+        // Proceed to checkout
+        function proceedToCheckout() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+
+            closeCart();
+            openCheckout();
+        }
+
+        // Open checkout modal
+        function openCheckout() {
+            updateCheckoutDisplay();
+            document.getElementById('checkoutModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close checkout modal
+        function closeCheckout() {
+            document.getElementById('checkoutModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Update checkout display
+        function updateCheckoutDisplay() {
+            const checkoutItems = document.getElementById('checkout-items');
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const serviceFee = 15000;
+            const total = subtotal + serviceFee;
+
+            checkoutItems.innerHTML = cart.map(item => `
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #eee;">
+                    <div>
+                        <strong>${item.name}</strong><br>
+                        <small>Quantity: ${item.quantity}</small>
+                    </div>
+                    <div style="text-align: right;">
+                        <strong>${(item.price * item.quantity).toLocaleString()} FCFA</strong>
+                    </div>
+                </div>
+            `).join('');
+
+            document.getElementById('checkout-subtotal').textContent = subtotal.toLocaleString();
+            document.getElementById('checkout-total').textContent = total.toLocaleString();
+        }
+
+        // Select payment method
+        function selectPaymentMethod(method) {
+            selectedPaymentMethod = method;
+
+            // Update UI
+            document.querySelectorAll('.payment-method').forEach(btn => {
+                btn.style.borderColor = '#e1e1e1';
+                btn.style.background = 'white';
+            });
+
+            const selectedBtn = document.querySelector(`[data-method="${method}"]`);
+            selectedBtn.style.borderColor = '#667eea';
+            selectedBtn.style.background = '#f8f9ff';
+        }
+
+        // Process payment
+        document.getElementById('paymentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            if (!selectedPaymentMethod) {
+                alert('Please select a payment method.');
+                return;
+            }
+
+            const formData = {
+                name: document.getElementById('billing-name').value,
+                email: document.getElementById('billing-email').value,
+                phone: document.getElementById('billing-phone').value,
+                eventDate: document.getElementById('event-date').value,
+                paymentMethod: selectedPaymentMethod,
+                items: cart,
+                subtotal: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0),
+                serviceFee: 15000,
+                total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0) + 15000,
+                orderDate: new Date().toISOString()
+            };
+
+            // Simulate payment processing
+            processPayment(formData);
+        });
+
+        // Simulate payment processing
+        function processPayment(orderData) {
+            const submitBtn = document.querySelector('#paymentForm button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+
+            submitBtn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Processing...';
+            submitBtn.disabled = true;
+
+            // Simulate API call delay
+            setTimeout(() => {
+                // Store order data
+                const orders = JSON.parse(localStorage.getItem('orders')) || [];
+                const orderId = 'ORD-' + Date.now();
+
+                orders.push({
+                    id: orderId,
+                    ...orderData,
+                    status: 'confirmed'
+                });
+
+                localStorage.setItem('orders', JSON.stringify(orders));
+
+                // Clear cart
+                cart = [];
+                updateCart();
+
+                // Show success
+                showPaymentSuccess(orderId, orderData);
+
+            }, 3000);
+        }
+
+        // Show payment success
+        function showPaymentSuccess(orderId, orderData) {
+            const checkoutModal = document.getElementById('checkoutModal');
+            checkoutModal.querySelector('.modal-content').innerHTML = `
+                <span class="modal-close" onclick="closeCheckout()">&times;</span>
+                <div style="text-align: center; padding: 40px;">
+                    <div style="font-size: 64px; color: #28a745; margin-bottom: 20px;">✓</div>
+                    <h2 style="color: #333; margin-bottom: 15px;">Payment Successful!</h2>
+                    <p style="color: #666; margin-bottom: 25px;">Your order has been confirmed and we'll contact you soon to finalize the details.</p>
+
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 25px; text-align: left;">
+                        <h4 style="color: #333; margin-bottom: 15px;">Order Details</h4>
+                        <p><strong>Order ID:</strong> ${orderId}</p>
+                        <p><strong>Total Amount:</strong> ${orderData.total.toLocaleString()} FCFA</p>
+                        <p><strong>Event Date:</strong> ${orderData.eventDate}</p>
+                        <p><strong>Payment Method:</strong> ${orderData.paymentMethod === 'paypal' ? 'PayPal' : 'Credit Card'}</p>
+                    </div>
+
+                    <div style="margin-bottom: 25px;">
+                        <h4 style="color: #333; margin-bottom: 15px;">What's Next?</h4>
+                        <ul style="text-align: left; color: #666;">
+                            <li>You'll receive a confirmation email within 5 minutes</li>
+                            <li>Our team will contact you within 24 hours to discuss details</li>
+                            <li>We'll schedule a consultation to finalize your event setup</li>
+                        </ul>
+                    </div>
+
+                    <button onclick="closeCheckout(); window.location.reload();" class="btn btn-custom btn-lg">Continue Shopping</button>
+                    <button onclick="downloadReceipt('${orderId}')" class="btn btn-secondary" style="margin-left: 10px;">Download Receipt</button>
+                </div>
+            `;
+        }
+
+        // Download receipt
+        function downloadReceipt(orderId) {
+            const orders = JSON.parse(localStorage.getItem('orders')) || [];
+            const order = orders.find(o => o.id === orderId);
+
+            if (order) {
+                const receiptContent = `
+                    EMA'S ROYALTY EVENTS - RECEIPT
+                    ================================
+                    Order ID: ${order.id}
+                    Date: ${new Date(order.orderDate).toLocaleDateString()}
+
+                    Customer Information:
+                    Name: ${order.name}
+                    Email: ${order.email}
+                    Phone: ${order.phone}
+                    Event Date: ${order.eventDate}
+
+                    Items Ordered:
+                    ${order.items.map(item => `- ${item.name} (x${item.quantity}) - ${(item.price * item.quantity).toLocaleString()} FCFA`).join('\n')}
+
+                    Subtotal: ${order.subtotal.toLocaleString()} FCFA
+                    Service Fee: ${order.serviceFee.toLocaleString()} FCFA
+                    Total: ${order.total.toLocaleString()} FCFA
+
+                    Payment Method: ${order.paymentMethod === 'paypal' ? 'PayPal' : 'Credit Card'}
+                    Status: ${order.status.toUpperCase()}
+
+                    Thank you for choosing EMA's Royalty Events!
+                `;
+
+                const blob = new Blob([receiptContent], { type: 'text/plain' });
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `EMA-Receipt-${orderId}.txt`;
+                a.click();
+                window.URL.revokeObjectURL(url);
+            }
+        }
+
+        // Initialize cart on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+
+            // Load saved cart if exists
+            const savedCart = localStorage.getItem('savedCart');
+            if (savedCart) {
+                const cartData = JSON.parse(savedCart);
+                const now = new Date();
+                const expiresAt = new Date(cartData.expiresAt);
+
+                if (now < expiresAt && confirm('You have a saved cart. Would you like to restore it?')) {
+                    cart = cartData.items;
+                    updateCart();
+                    localStorage.removeItem('savedCart');
+                }
+            }
+        });
+
+        // Add click tracking for analytics
+        document.querySelectorAll('.btn-custom').forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Add visual feedback
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+
+                // Track the click (you can integrate with analytics here)
+                console.log('Service booking initiated:', this.onclick);
+            });
+        });
+
+        // Add smooth scrolling for better UX
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add loading animation for book now buttons
+        function showBookingConfirmation(serviceName) {
+            // Create a temporary notification
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                padding: 15px 20px;
+                border-radius: 10px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                z-index: 10000;
+                font-weight: 500;
+                animation: slideIn 0.3s ease;
+            `;
+            notification.innerHTML = `✓ Redirecting to book ${serviceName}...`;
+
+            // Add animation keyframes
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+            `;
+            document.head.appendChild(style);
+            document.body.appendChild(notification);
+
+            // Remove notification after 2 seconds
+            setTimeout(() => {
+                notification.remove();
+                style.remove();
+            }, 2000);
+        }
+
+        // Enhanced click handlers for all book now buttons
+        document.querySelectorAll('a[href*="contact.html"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const serviceName = this.getAttribute('onclick').match(/'([^']+)'/)[1];
+                showBookingConfirmation(serviceName);
+            });
+        });
+
+        // Quick booking modal functions
+        function openQuickBooking() {
+            document.getElementById('quickBookingModal').style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeQuickBooking() {
+            document.getElementById('quickBookingModal').style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restore scrolling
+            document.getElementById('quickBookingForm').reset();
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('quickBookingModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeQuickBooking();
+            }
+        });
+
+        // Handle quick booking form submission
+        document.getElementById('quickBookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('quickName').value.trim();
+            const email = document.getElementById('quickEmail').value.trim();
+            const phone = document.getElementById('quickPhone').value.trim();
+            const eventType = document.getElementById('quickEventType').value;
+            const message = document.getElementById('quickMessage').value.trim();
+
+            // Basic validation
+            if (!name || !email) {
+                alert('Please fill in your name and email address.');
+                return;
+            }
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            // Store the quick inquiry data
+            const inquiryData = {
+                name: name,
+                email: email,
+                phone: phone,
+                eventType: eventType,
+                message: message,
+                timestamp: new Date().toISOString(),
+                type: 'quick_inquiry'
+            };
+
+            localStorage.setItem('quickInquiry', JSON.stringify(inquiryData));
+
+            // Show success message
+            const modalContent = document.querySelector('.modal-content');
+            modalContent.innerHTML = `
+                <span class="modal-close" onclick="closeQuickBooking()">&times;</span>
+                <div style="text-align: center; padding: 20px;">
+                    <div style="font-size: 48px; color: #28a745; margin-bottom: 20px;">✓</div>
+                    <h3 style="color: #333; margin-bottom: 15px;">Thank You!</h3>
+                    <p style="color: #666; margin-bottom: 25px;">Your quick inquiry has been received. We'll get back to you within 24 hours!</p>
+                    <button onclick="closeQuickBooking()" class="btn btn-custom">Close</button>
+                </div>
+            `;
+
+            // Auto-close after 3 seconds
+            setTimeout(() => {
+                closeQuickBooking();
+            }, 3000);
+        });
+
+        // Add keyboard support for modal
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeQuickBooking();
+            }
+        });
+
+        // Add floating action button for mobile
+        if (window.innerWidth <= 768) {
+            const fab = document.createElement('div');
+            fab.innerHTML = '📞';
+            fab.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                width: 60px;
+                height: 60px;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 24px;
+                cursor: pointer;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+                z-index: 1000;
+                transition: transform 0.3s ease;
+            `;
+            fab.onclick = openQuickBooking;
+            fab.addEventListener('mouseenter', () => fab.style.transform = 'scale(1.1)');
+            fab.addEventListener('mouseleave', () => fab.style.transform = 'scale(1)');
+            document.body.appendChild(fab);
+        }
+    </script>
+</body>
+</html>
